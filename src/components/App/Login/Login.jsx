@@ -8,9 +8,9 @@ import LoginForm from './LoginForm/LoginForm';
 const Login = () => {
     return (
         <div className='Login'>
-            <h2>¡Ingresá!</h2>
+            <h1>¡Ingresá!</h1>
             <Image src={login} className='hero'/>
-            <LoginForm/>
+            <LoginForm message=''/>
             <a href='#'>Quiero registrarme</a>
         </div>
     )
