@@ -11,6 +11,7 @@ const Login = () => {
             <h2>¡Ingresá!</h2>
             <Image src={login} className='hero'/>
             <LoginForm/>
+            <a href='#'>Quiero registrarme</a>
         </div>
     )
 }
