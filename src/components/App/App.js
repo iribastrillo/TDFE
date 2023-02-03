@@ -1,14 +1,11 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Todo from './Dashboard/Todo/Todo';
+import Login from './Login';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Todo/>
-      </header>
+      <Login/>
     </div>
   );
 }

@@ -1,15 +1,16 @@
+import Image from 'react-bootstrap/Image';
+
+import './Login.css';
+import login from '../../../assets/img/login.jpg';
+import LoginForm from './LoginForm/LoginForm';
+
+
 const Login = () => {
     return (
-        <div>
-            <h2>Hola, soy el login</h2>
-            <br />
-            <label htmlFor="username"></label>
-            <input type="text" placeholder="Ingrese su nombre de usuario"/>
-            <br />
-            <label htmlFor="password"></label>
-            <input type="text" placeholder="Ingrese su contraseña"/>
-            <br />
-            <input type="submit" value="¡Ingresar!" />
+        <div className='Login'>
+            <h2>¡Ingresá!</h2>
+            <Image src={login} className='hero'/>
+            <LoginForm/>
         </div>
     )
 }
