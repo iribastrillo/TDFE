@@ -10,8 +10,7 @@ const Login = () => {
         <div className='Login'>
             <h1>¡Ingresá!</h1>
             <Image src={login} className='hero'/>
-            <LoginForm message=''/>
-            <a href='#'>Quiero registrarme</a>
+            <LoginForm/>
         </div>
     )
 }
