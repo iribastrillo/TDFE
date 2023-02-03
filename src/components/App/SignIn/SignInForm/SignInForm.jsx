@@ -2,9 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import './LoginForm.css';
-
-const LoginForm = () => {
+const SignInForm = () => {
 
     const [usernameErrorMessage, setUsernameErrorMessage] = useState ('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState ('');
@@ -19,7 +17,7 @@ const LoginForm = () => {
         <Form>
         <Form.Group className="mb-12" controlId="username">
             <Form.Label>Usuario</Form.Label>
-            <Form.Control type="email" placeholder="Ingresá tu usuario..." />
+            <Form.Control type="email" placeholder="Ingresá tu usuario" />
             <Form.Text className="text-danger">
                 {usernameErrorMessage}
             </Form.Text>
@@ -33,12 +31,34 @@ const LoginForm = () => {
             </Form.Text>
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="confirm">
+            <Form.Label>Confirmar contraseña</Form.Label>
+            <Form.Control type="password" placeholder="Repetí tu contraseña" />
+            <Form.Text className="text-danger">
+                {passwordErrorMessage}
+            </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId='city'>
+            <Form.Label>Ciudad</Form.Label>
+            <Form.Select>
+                <option>Opción falsa</option>
+            </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId='district'>
+            <Form.Label>Departamento</Form.Label>
+            <Form.Select>
+                <option>Opción falsa</option>
+            </Form.Select>
+        </Form.Group>
+
         <Button variant="primary" type="submit" onClick={validate}>
-            Ingresá
+            Registrate
         </Button>
         
         </Form>
     );
 }
 
-export default LoginForm;
+export default SignInForm;
