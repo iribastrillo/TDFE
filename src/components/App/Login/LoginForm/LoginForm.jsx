@@ -4,11 +4,10 @@ import Form from 'react-bootstrap/Form';
 
 import './LoginForm.css';
 
-const LoginForm = () => {
 
+const LoginForm = () => {
     const [usernameErrorMessage, setUsernameErrorMessage] = useState ('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState ('');
-
 
     function validate () {
         setUsernameErrorMessage ('Reacciono');

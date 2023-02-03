@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import SignIn from './SignIn/SignIn';
+import Signin from './SignIn';
 
 function App() {
   return (
     <div className="App">
-      <SignIn/>
+      <Signin/>
     </div>
   );
 }

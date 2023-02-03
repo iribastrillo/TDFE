@@ -1,17 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+
+import {getAllDistricts} from '../../../../services/dwallet/getAllDistricts';
+import { getCitiesInDistrict } from '../../../../services/dwallet/getCitiesInDistrict';
+
 
 const SignInForm = () => {
 
     const [usernameErrorMessage, setUsernameErrorMessage] = useState ('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState ('');
+    const [districts, setDistricts] = useState ([]);
+    const [cities, setCities] = useState ([]);
 
 
     function validate () {
         setUsernameErrorMessage ('Reacciono');
         setPasswordErrorMessage ('Error en la contraseña');
     }
+
+    function getDistricts () {
+        getAllDistricts().then ((payload) => {
+            setDistricts (payload.departamentos);
+        })
+    }
+
+    function getCities (id) {
+        getCitiesInDistrict(id).then ((payload) => {
+            setCities (payload.ciudades);
+        })
+    }
+
+    useEffect (() => {
+        getDistricts ();
+    })
 
     return (
         <Form>
@@ -39,17 +61,21 @@ const SignInForm = () => {
             </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId='city'>
-            <Form.Label>Ciudad</Form.Label>
-            <Form.Select>
-                <option>Opción falsa</option>
-            </Form.Select>
-        </Form.Group>
-
         <Form.Group className="mb-3" controlId='district'>
             <Form.Label>Departamento</Form.Label>
             <Form.Select>
-                <option>Opción falsa</option>
+                {districts.map ((district) => {
+                    return <option value={district.id}>{district.nombre}</option>
+                })}
+            </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId='city'>
+            <Form.Label>Ciudad</Form.Label>
+            <Form.Select>
+                {cities.map ((city) => {
+                    return <option value={city.id}>{city.nombre}</option>
+                })}
             </Form.Select>
         </Form.Group>
 
