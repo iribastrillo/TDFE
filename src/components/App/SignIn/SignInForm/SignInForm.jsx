@@ -11,8 +11,7 @@ const SignInForm = () => {
     const [usernameErrorMessage, setUsernameErrorMessage] = useState ('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState ('');
     const [districts, setDistricts] = useState ([]);
-    const [cities, setCities] = useState ([]);
-
+    const [cities, setCities] = useState ([{nombre: 'Elige un departamento'}]);
 
     function validate () {
         setUsernameErrorMessage ('Reacciono');
@@ -25,8 +24,8 @@ const SignInForm = () => {
         })
     }
 
-    function getCities (id) {
-        getCitiesInDistrict(id).then ((payload) => {
+    function handleDistrictChange (event) {
+        getCitiesInDistrict (event.target.value).then ((payload) => {
             setCities (payload.ciudades);
         })
     }
@@ -63,7 +62,7 @@ const SignInForm = () => {
 
         <Form.Group className="mb-3" controlId='district'>
             <Form.Label>Departamento</Form.Label>
-            <Form.Select>
+            <Form.Select onChange={handleDistrictChange}>
                 {districts.map ((district) => {
                     return <option value={district.id}>{district.nombre}</option>
                 })}
