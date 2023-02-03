@@ -1,5 +1,7 @@
+import endpoints from "../../config";
+
 async function getAllDistricts () {
-    let response = await fetch ('https://dwallet.develotion.com//departamentos.php');
+    let response = await fetch (  `${endpoints.BASE}${endpoints.GET_DISTRICTS}`);
     let districts = await response.json();
     return districts;
 }
