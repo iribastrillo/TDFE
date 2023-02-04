@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 import {getAllDistricts} from '../../../../services/dwallet/getAllDistricts';
 import { getCitiesInDistrict } from '../../../../services/dwallet/getCitiesInDistrict';
+import { signin } from '../../../../services/dwallet/signin';
 
 
 const SignInForm = () => {
@@ -12,6 +13,7 @@ const SignInForm = () => {
     const [passwordErrorMessage, setPasswordErrorMessage] = useState ('');
     const [districts, setDistricts] = useState ([]);
     const [cities, setCities] = useState ([{nombre: 'Elige un departamento'}]);
+
 
     function validate () {
         setUsernameErrorMessage ('Reacciono');
@@ -30,58 +32,71 @@ const SignInForm = () => {
         })
     }
 
+    function handleSubmit (event) {
+        event.preventDefault();
+        const payload = {
+            username : event.target.username.value,
+            password: event.target.password.value,
+            confirm: event.target.confirm.value,
+            district: event.target.district.value,
+            city: event.target.city.value
+        }
+        signin (payload).then ((user) => {
+            return console.log (user);
+        })
+    }
+
     useEffect (() => {
         getDistricts ();
     })
 
     return (
-        <Form>
-        <Form.Group className="mb-12" controlId="username">
-            <Form.Label>Usuario</Form.Label>
-            <Form.Control type="email" placeholder="Ingresá tu usuario" />
-            <Form.Text className="text-danger">
-                {usernameErrorMessage}
-            </Form.Text>
-        </Form.Group>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-12">
+                <Form.Label htmlFor='username'>Usuario</Form.Label>
+                <Form.Control name='username' type="text" placeholder="Ingresá tu usuario" />
+                <Form.Text className="text-danger">
+                    {usernameErrorMessage}
+                </Form.Text>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="password">
-            <Form.Label>Contraseña</Form.Label>
-            <Form.Control type="password" placeholder="Ingresá tu contraseña" />
-            <Form.Text className="text-danger">
-                {passwordErrorMessage}
-            </Form.Text>
-        </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label htmlFor='password'>Contraseña</Form.Label>
+                <Form.Control name='password' type="password" placeholder="Ingresá tu contraseña" />
+                <Form.Text className="text-danger">
+                    {passwordErrorMessage}
+                </Form.Text>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="confirm">
-            <Form.Label>Confirmar contraseña</Form.Label>
-            <Form.Control type="password" placeholder="Repetí tu contraseña" />
-            <Form.Text className="text-danger">
-                {passwordErrorMessage}
-            </Form.Text>
-        </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label htmlFor='confirm'>Confirmar contraseña</Form.Label>
+                <Form.Control name='confirm' type="password" placeholder="Repetí tu contraseña" />
+                <Form.Text className="text-danger">
+                    {passwordErrorMessage}
+                </Form.Text>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId='district'>
-            <Form.Label>Departamento</Form.Label>
-            <Form.Select onChange={handleDistrictChange}>
-                {districts.map ((district) => {
-                    return <option value={district.id}>{district.nombre}</option>
-                })}
-            </Form.Select>
-        </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label htmlFor='district'>Departamento</Form.Label>
+                <Form.Select name='district' onChange={handleDistrictChange}>
+                    {districts.map ((district) => {
+                        return <option value={district.id}>{district.nombre}</option>
+                    })}
+                </Form.Select>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId='city'>
-            <Form.Label>Ciudad</Form.Label>
-            <Form.Select>
-                {cities.map ((city) => {
-                    return <option value={city.id}>{city.nombre}</option>
-                })}
-            </Form.Select>
-        </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label htmlFor='city'>Ciudad</Form.Label>
+                <Form.Select name='city'>
+                    {cities.map ((city) => {
+                        return <option value={city.id}>{city.nombre}</option>
+                    })}
+                </Form.Select>
+            </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={validate}>
-            Registrate
-        </Button>
-        
+            <Button variant="primary" type="submit" onClick={validate}>
+                Registrate
+            </Button>
         </Form>
     );
 }
