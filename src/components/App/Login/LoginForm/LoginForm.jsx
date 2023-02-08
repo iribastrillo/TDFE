@@ -44,10 +44,13 @@ const LoginForm = () => {
             </Form.Text>
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={validate}>
-            Ingresá
-        </Button>
-        
+        <div className='d-grid'>
+            <Button variant="primary" type="submit" onClick={validate} size='lg'>
+                Ingresá
+            </Button>
+            <p>Quiero registrarme</p>
+        </div>
+    
         </Form>
     );
 }

@@ -48,7 +48,7 @@ const SignInForm = () => {
 
     useEffect (() => {
         getDistricts ();
-    })
+    }, [])
 
     return (
         <Form onSubmit={handleSubmit}>
