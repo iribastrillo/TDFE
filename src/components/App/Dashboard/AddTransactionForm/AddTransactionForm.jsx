@@ -1,5 +1,7 @@
 import { Form } from "react-bootstrap"
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import getCategories from "../../../../services/dwallet/getCategories";
+import { useSelector } from "react-redux";
 
 const AddTransactionForm = () => {
     const concept = useRef();
@@ -7,6 +9,15 @@ const AddTransactionForm = () => {
     const amount = useRef();
     const payMethod = useRef();
     const date = useRef();
+    const loggedInUser = useSelector(state => state.session.value);
+    const[categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        getCategories(loggedInUser)
+            .then(data => {
+                setCategories(data.rubros);
+            })
+    })
     
 
 
@@ -23,6 +34,9 @@ const AddTransactionForm = () => {
                 <Form.Label>Categoría:</Form.Label>
                 <Form.Select ref={category}>
                     <option selected disabled>Elige una categoría...</option>
+                    {categories.map((category) => {
+                        return <option value={category.id}>{category.tipo} - {category.nombre}</option>
+                    })}
                 </Form.Select>
             </Form.Group>
             
