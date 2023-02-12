@@ -1,12 +1,13 @@
 import endpoints from "../../config";
 
 async function login (payload) {
+    console.log (payload);
     const response = await fetch (`${endpoints.BASE}${endpoints.POST_LOGIN}`, {
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json'
         },
-        body : payload
+        body : JSON.stringify (payload)
     })
     const user = await response.json();
     return user;
