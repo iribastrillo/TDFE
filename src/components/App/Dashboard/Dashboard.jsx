@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
 
 import dashboard from '../../../assets/img/dashboard.jpg';
 import Navigation from './Navbar';
-
+import AddTransactionForm from './AddTransactionForm/AddTransactionForm';
 
 const Dashboad = () => {
     const [show, setShow] = useState (false);
@@ -65,7 +65,7 @@ const Dashboad = () => {
                         <Modal.Title>Modal heading</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        
+                        <AddTransactionForm/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
