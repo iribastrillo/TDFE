@@ -4,6 +4,12 @@
         url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #ededed;
   margin: 0;
@@ -19,4 +25,26 @@ code {
 
 a {
   text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bolder;
+}
+
+.hero {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.expand {
+  width: 100%;
+}
+
+.rounded {
+  border-radius: 5px;
+}
+
+.indigo {
+  background-color: #9ACEDB;
 }
