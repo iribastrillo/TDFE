@@ -9,6 +9,7 @@ async function signin (payload) {
         body : JSON.stringify (payload)
     })
     const user = await response.json();
+    console.log (user);
     return user;
 }
 

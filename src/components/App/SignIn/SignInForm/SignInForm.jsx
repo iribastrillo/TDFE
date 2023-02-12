@@ -1,24 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import {getAllDistricts} from '../../../../services/dwallet/getAllDistricts';
 import { getCitiesInDistrict } from '../../../../services/dwallet/getCitiesInDistrict';
 import { signin } from '../../../../services/dwallet/signin';
+import { setLoggedInUser } from '../../../../app/session';
 
 
 const SignInForm = () => {
-
-    const [usernameErrorMessage, setUsernameErrorMessage] = useState ('');
-    const [passwordErrorMessage, setPasswordErrorMessage] = useState ('');
+    const username = useRef ('');
+    const password = useRef ('');
+    const confirm = useRef ('');
+    const district = useRef ('');
+    const city = useRef ('');
+    const dispatch = useDispatch ();
     const [districts, setDistricts] = useState ([]);
     const [cities, setCities] = useState ([{nombre: 'Elige un departamento'}]);
-
-
-    function validate () {
-        setUsernameErrorMessage ('Reacciono');
-        setPasswordErrorMessage ('Error en la contraseña');
-    }
 
     function getDistricts () {
         getAllDistricts().then ((payload) => {
@@ -35,14 +35,13 @@ const SignInForm = () => {
     function handleSubmit (event) {
         event.preventDefault();
         const payload = {
-            username : event.target.username.value,
-            password: event.target.password.value,
-            confirm: event.target.confirm.value,
-            district: event.target.district.value,
-            city: event.target.city.value
+            usuario : username.current.value,
+            password: password.current.value,
+            idDepartamento: district.current.value,
+            idCiudad: city.current.value
         }
         signin (payload).then ((user) => {
-            return console.log (user);
+            dispatch (setLoggedInUser(user))
         })
     }
 
@@ -54,31 +53,29 @@ const SignInForm = () => {
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-12">
                 <Form.Label htmlFor='username'>Usuario</Form.Label>
-                <Form.Control name='username' type="text" placeholder="Ingresá tu usuario" />
+                <Form.Control ref={username} name='username' type="text" placeholder="Ingresá tu usuario" />
                 <Form.Text className="text-danger">
-                    {usernameErrorMessage}
                 </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
                 <Form.Label htmlFor='password'>Contraseña</Form.Label>
-                <Form.Control name='password' type="password" placeholder="Ingresá tu contraseña" />
+                <Form.Control ref={password} name='password' type="password" placeholder="Ingresá tu contraseña" />
                 <Form.Text className="text-danger">
-                    {passwordErrorMessage}
                 </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
                 <Form.Label htmlFor='confirm'>Confirmar contraseña</Form.Label>
-                <Form.Control name='confirm' type="password" placeholder="Repetí tu contraseña" />
+                <Form.Control ref={confirm} name='confirm' type="password" placeholder="Repetí tu contraseña" />
                 <Form.Text className="text-danger">
-                    {passwordErrorMessage}
                 </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
                 <Form.Label htmlFor='district'>Departamento</Form.Label>
-                <Form.Select name='district' onChange={handleDistrictChange}>
+                <Form.Select ref={district} name='district' onChange={handleDistrictChange}>
+                <option selected disabled>Elige un departamento</option>
                     {districts.map ((district) => {
                         return <option value={district.id}>{district.nombre}</option>
                     })}
@@ -87,14 +84,14 @@ const SignInForm = () => {
 
             <Form.Group className="mb-3">
                 <Form.Label htmlFor='city'>Ciudad</Form.Label>
-                <Form.Select name='city'>
+                <Form.Select ref={city} name='city'>
                     {cities.map ((city) => {
                         return <option value={city.id}>{city.nombre}</option>
                     })}
                 </Form.Select>
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={validate}>
+            <Button variant="primary" type="submit">
                 Registrate
             </Button>
         </Form>

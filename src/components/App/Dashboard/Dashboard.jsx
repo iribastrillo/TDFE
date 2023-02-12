@@ -1,11 +1,21 @@
+import { useState } from 'react';
 import Image from 'react-bootstrap/Image';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
 
 import dashboard from '../../../assets/img/dashboard.jpg';
 import Navigation from './Navbar';
 
 
 const Dashboad = () => {
+    const [show, setShow] = useState (false);
+
+    function handleShow () {
+        setShow (true);
+    }
+    function handleClose () {
+        setShow (false);
+    }
+
     return (
         <Container fluid>
             <Navigation></Navigation>
@@ -22,7 +32,7 @@ const Dashboad = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button className='expand' variant='success'>+</Button>
+                        <Button onClick={handleShow} className='expand' variant='success'>+</Button>
                     </Col>
                     <Col>
                         <Button className='expand' variant='danger'>-</Button>
@@ -50,6 +60,22 @@ const Dashboad = () => {
                         </Card>
                     </Col>
                 </Row>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            Agregar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </Container>
         </Container>
     )

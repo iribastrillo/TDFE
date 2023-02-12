@@ -1,7 +1,6 @@
 import endpoints from "../../config";
 
 async function login (payload) {
-    console.log (payload);
     const response = await fetch (`${endpoints.BASE}${endpoints.POST_LOGIN}`, {
         method : 'POST',
         headers : {

@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-
+import {useDispatch} from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -14,7 +13,6 @@ const LoginForm = () => {
     const password = useRef ('');
 
     const dispatch = useDispatch ();
-    const user = useSelector ((state) => state.session.value)
 
     function handleSubmit (event) {
         event.preventDefault();
