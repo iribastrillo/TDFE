@@ -33,7 +33,7 @@ const AddTransactionForm = () => {
         }
 
         addTransaction(payload).then(tr =>{
-
+            console.log(payload)
             console.log(tr);
 
         })

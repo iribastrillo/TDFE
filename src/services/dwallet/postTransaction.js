@@ -1,6 +1,7 @@
 import endpoints from "../../config";
 
 async function addTransaction(payload) {
+    console.log(payload);
     const response = await fetch(`${endpoints.BASE}${endpoints.POST_TRANSACTION}`,{
         method: 'POST',
         headers: {
