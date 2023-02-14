@@ -17,12 +17,25 @@ const AddTransactionForm = () => {
             .then(data => {
                 setCategories(data.rubros);
             })
-    },[categories])
+    })
     
+    const handleSubmit = event => {
+        event.preventDefault();
+        const payload = {
+            idUsuario: loggedInUser.id,
+            concepto: concept.current.value,
+            categoria: parseInt(category.current.value),
+            total: parseInt(amount.current.value),
+            medio: payMethod.current.value,
+            fecha: date.current.value,
+        }
+
+        console.log(payload);
+    }
 
 
     return(
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-12">
                 <Form.Label>Concepto:</Form.Label>
                 <Form.Control type="text" placeholder="Concepto..." ref={concept}/>
@@ -49,9 +62,18 @@ const AddTransactionForm = () => {
             
             <Form.Group className="mb-12">
                 <Form.Label>Medio de Pago: </Form.Label>
-                <Form.Control type="text" placeholder="Indique el medio de pago..." ref={payMethod} />
+                    <Form.Select ref={payMethod}>
+                        <option selected disabled>Elige un método de pago...</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Credito">Crédito</option>
+                        <option value="Debito">Débito</option>
+                    </Form.Select>
+                    <Form.Text className="text-danger">
+                    </Form.Text>
+
+                {/* <Form.Control type="text" placeholder="Indique el medio de pago..." ref={payMethod} />
                 <Form.Text className="text-danger">
-                </Form.Text>
+                </Form.Text> */}
             </Form.Group>
             
             <Form.Group className="mb-12">
@@ -64,7 +86,7 @@ const AddTransactionForm = () => {
                         <Button variant="secondary" >
                             Cancelar
                         </Button>
-                        <Button variant="primary" >
+                        <Button variant="primary" type="submit">
                             Agregar
                         </Button>
             </Modal.Footer>
