@@ -4,7 +4,7 @@ import getCategories from "../../../../services/dwallet/getCategories";
 import { useSelector } from "react-redux";
 import { addTransaction } from "../../../../services/dwallet/postTransaction";
 
-const AddTransactionForm = () => {
+const AddTransactionForm = (show) => {
     const concept = useRef();
     const category = useRef();
     const amount = useRef();
@@ -15,11 +15,12 @@ const AddTransactionForm = () => {
 
     useEffect(() => {
         getCategories(loggedInUser)
-            .then(data => {
-                setCategories(data.rubros);
-            })
-    })
+        .then(data => {
+            setCategories(data.rubros);
+        })
+    }, [])
     
+
     const handleSubmit = event => {
         event.preventDefault();
         const payload = {
@@ -34,7 +35,9 @@ const AddTransactionForm = () => {
 
         addTransaction(payload).then(tr =>{
             console.log(payload)
+            if(tr.status !==200) 
             console.log(tr);
+            
 
         })
     }
