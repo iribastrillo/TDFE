@@ -62,19 +62,19 @@ const Dashboad = () => {
                 </Row>
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Title>Nueva Transacción</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <AddTransactionForm/>
                     </Modal.Body>
-                    <Modal.Footer>
+                    {/* <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Cancelar
                         </Button>
                         <Button variant="primary" onClick={handleClose}>
                             Agregar
                         </Button>
-                    </Modal.Footer>
+                    </Modal.Footer> */}
                 </Modal>
             </Container>
         </Container>

@@ -1,4 +1,4 @@
-import { Form } from "react-bootstrap"
+import { Form, Button, Modal } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react";
 import getCategories from "../../../../services/dwallet/getCategories";
 import { useSelector } from "react-redux";
@@ -17,7 +17,7 @@ const AddTransactionForm = () => {
             .then(data => {
                 setCategories(data.rubros);
             })
-    })
+    },[categories])
     
 
 
@@ -60,6 +60,14 @@ const AddTransactionForm = () => {
                 <Form.Text className="text-danger">
                 </Form.Text>
             </Form.Group>
+            <Modal.Footer>
+                        <Button variant="secondary" >
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" >
+                            Agregar
+                        </Button>
+            </Modal.Footer>
         </Form>
 
     )
