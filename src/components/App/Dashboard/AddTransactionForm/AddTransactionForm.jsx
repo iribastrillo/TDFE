@@ -2,6 +2,7 @@ import { Form, Button, Modal } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react";
 import getCategories from "../../../../services/dwallet/getCategories";
 import { useSelector } from "react-redux";
+import { addTransaction } from "../../../../services/dwallet/postTransaction";
 
 const AddTransactionForm = () => {
     const concept = useRef();
@@ -28,9 +29,14 @@ const AddTransactionForm = () => {
             total: parseInt(amount.current.value),
             medio: payMethod.current.value,
             fecha: date.current.value,
+            apiKey: loggedInUser.apiKey,
         }
 
-        console.log(payload);
+        addTransaction(payload).then(tr =>{
+
+            console.log(tr);
+
+        })
     }
 
 

@@ -7,7 +7,14 @@ async function addTransaction(payload) {
             'Content-Type': 'application/json',
             'apikey': payload.apiKey,
         },
-        body: payload
+        body: {
+            "idUsuario": payload.idUsuario,
+            "concepto": payload.concepto,
+            "categoria": payload.categoria,
+            "total": payload.total,
+            "medio": payload.medio,
+            "fecha": payload.fecha,
+        }
     });
 
     const transaction = await response.json();
