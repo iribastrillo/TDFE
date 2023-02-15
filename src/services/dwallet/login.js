@@ -8,8 +8,13 @@ async function login (payload) {
         },
         body : JSON.stringify (payload)
     })
-    const user = await response.json();
-    return user;
+    const rsp = await response.json();
+    
+    if (response.status === 200) {
+        return Promise.resolve (rsp);
+    } else {
+        return Promise.reject (rsp);
+    }    
 }
 
 export {login};

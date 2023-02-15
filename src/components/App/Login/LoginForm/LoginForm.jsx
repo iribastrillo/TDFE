@@ -12,6 +12,7 @@ import {isEmpty} from '../../../../utils/utils';
 
 const LoginForm = () => {
     const [forbidLogin, setForbidLogin] = useState (true)
+    const [errorMessage, setErrorMessage] = useState ('');
     const username = useRef ('');
     const password = useRef ('');
 
@@ -39,8 +40,12 @@ const LoginForm = () => {
         login (payload)
             .then ((user) => {
                 dispatch (setLoggedInUser(user))
+                setErrorMessage('');
                 navigator ('/dashboard'); 
                 })
+            .catch ((rsp) => {
+                setErrorMessage(rsp.mensaje);
+            })
     }
 
     return (
@@ -48,17 +53,18 @@ const LoginForm = () => {
         <Form.Group className="mb-12">
             <Form.Label htmlFor='username'>Usuario</Form.Label>
             <Form.Control onChange={runLoginValidations} ref={username} name='username' type="text" placeholder="Ingresá tu usuario..." />
-            <Form.Text className="text-danger">
-            </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3">
             <Form.Label htmlFor='password'>Contraseña</Form.Label>
             <Form.Control onChange={runLoginValidations} ref={password} name='password' type="password" placeholder="Ingresá tu contraseña" />
+        </Form.Group>
+        <Form.Group>
             <Form.Text className="text-danger">
+                {errorMessage}
             </Form.Text>
         </Form.Group>
-
+        
         <input className='button indigo' type='submit' disabled={forbidLogin} value='Ingresá'/>
 
         <div className='text-center'>
