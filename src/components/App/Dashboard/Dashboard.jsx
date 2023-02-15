@@ -32,10 +32,9 @@ const Dashboad = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button onClick={handleShow} className='expand' variant='success'>+</Button>
-                    </Col>
-                    <Col>
-                        <Button className='expand' variant='danger'>-</Button>
+                        <button onClick={handleShow} className='button indigo'> 
+                            Agregar un movimiento
+                        </button>
                     </Col>
                 </Row>
                 <Row>
@@ -62,19 +61,11 @@ const Dashboad = () => {
                 </Row>
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Nueva Transacción</Modal.Title>
+                        <Modal.Title>Agregar un movimiento</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <AddTransactionForm/>
                     </Modal.Body>
-                    {/* <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Cancelar
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Agregar
-                        </Button>
-                    </Modal.Footer> */}
                 </Modal>
             </Container>
         </Container>

@@ -55,10 +55,9 @@ const AddTransactionForm = (show) => {
 
             <Form.Group className="mb-12">
                 <Form.Label>Categoría:</Form.Label>
-                <Form.Select ref={category}>
-                    <option selected disabled>Elige una categoría...</option>
+                <Form.Select ref={category} defaultValue='Elige una categoría'>
                     {categories.map((category) => {
-                        return <option value={category.id}>{category.tipo} - {category.nombre}</option>
+                        return <option value={category.id} key={category.id}>{category.tipo} - {category.nombre}</option>
                     })}
                 </Form.Select>
             </Form.Group>
@@ -72,18 +71,13 @@ const AddTransactionForm = (show) => {
             
             <Form.Group className="mb-12">
                 <Form.Label>Medio de Pago: </Form.Label>
-                    <Form.Select ref={payMethod}>
-                        <option selected disabled>Elige un método de pago...</option>
+                    <Form.Select ref={payMethod} defaultValue='Efectivo'>
                         <option value="Efectivo">Efectivo</option>
                         <option value="Credito">Crédito</option>
                         <option value="Debito">Débito</option>
                     </Form.Select>
                     <Form.Text className="text-danger">
                     </Form.Text>
-
-                {/* <Form.Control type="text" placeholder="Indique el medio de pago..." ref={payMethod} />
-                <Form.Text className="text-danger">
-                </Form.Text> */}
             </Form.Group>
             
             <Form.Group className="mb-12">
@@ -93,12 +87,9 @@ const AddTransactionForm = (show) => {
                 </Form.Text>
             </Form.Group>
             <Modal.Footer>
-                        <Button variant="secondary" >
-                            Cancelar
-                        </Button>
-                        <Button variant="primary" type="submit">
-                            Agregar
-                        </Button>
+                <button className="button indigo" type="submit">
+                    Agregar
+                </button>
             </Modal.Footer>
         </Form>
 
