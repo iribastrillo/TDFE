@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import {useDispatch} from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 import './LoginForm.css';
 import { login } from '../../../../services/dwallet/login';
@@ -9,7 +11,6 @@ import { setLoggedInUser } from '../../../../app/session';
 import { useState } from 'react';
 
 import {isEmpty} from '../../../../utils/utils';
-import { Link } from 'react-router-dom';
 
 
 const LoginForm = () => {
@@ -18,6 +19,7 @@ const LoginForm = () => {
     const password = useRef ('');
 
     const dispatch = useDispatch ();
+    const navigator = useNavigate();
 
     useEffect (() => {
         runLoginValidations ();
@@ -39,6 +41,8 @@ const LoginForm = () => {
         }
         login (payload).then ((user) => {
             dispatch (setLoggedInUser(user))
+            navigator ('/dashboard');
+            
         })
     }
 
@@ -58,10 +62,9 @@ const LoginForm = () => {
             </Form.Text>
         </Form.Group>
 
-        <div className='d-grid'>
-            <Button variant="primary" type="submit" size='lg' disabled={forbidLogin}>
-                Ingresá
-            </Button>
+        <input className='button indigo' type='submit' disabled={forbidLogin} value='Ingresá'/>
+
+        <div className='text-center'>
             <Link to='/signin'>Quiero registrarme</Link>
         </div>
     

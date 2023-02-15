@@ -25,6 +25,12 @@ code {
 
 a {
   text-decoration: none;
+  color: #9ACEDB;
+}
+
+a:hover {
+  font-weight: bold;
+  color: #9ACEDB;
 }
 
 h1, h2, h3, h4, h5 {
@@ -51,4 +57,18 @@ h1, h2, h3, h4, h5 {
 
 .light-pink {
   background-color: #F3D3E8;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.text-center {
+  text-align: center;
 }

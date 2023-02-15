@@ -92,10 +92,9 @@ const SignInForm = () => {
                 </Form.Select>
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-                Registrate
-            </Button>
-            <div>
+            <input className='button indigo' type="submit" value='Registrame'/>
+
+            <div className='text-center'>
                 <Link to='/'>Quiero ingresar</Link>
             </div>
         </Form>
