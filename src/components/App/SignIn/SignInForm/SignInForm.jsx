@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import Button from 'react-bootstrap/Button';
+import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 
 import {getAllDistricts} from '../../../../services/dwallet/getAllDistricts';

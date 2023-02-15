@@ -1,4 +1,4 @@
-import { Form, Button, Modal } from "react-bootstrap"
+import { Form, Modal } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react";
 import getCategories from "../../../../services/dwallet/getCategories";
 import { useSelector } from "react-redux";

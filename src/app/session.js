@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+const user = localStorage.getItem ('user')
+
 const initialState = {
-    value : localStorage.getItem ('user') === undefined ? undefined : localStorage.getItem ('user')
+    value : user === undefined ? undefined : JSON.parse(user)
 }
 
 export const sessionSlice = createSlice ({

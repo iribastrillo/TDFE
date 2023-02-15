@@ -8,12 +8,12 @@ async function login (payload) {
         },
         body : JSON.stringify (payload)
     })
-    const rsp = await response.json();
+    const data = await response.json();
     
     if (response.status === 200) {
-        return Promise.resolve (rsp);
+        return Promise.resolve (data);
     } else {
-        return Promise.reject (rsp);
+        return Promise.reject (data);
     }    
 }
 

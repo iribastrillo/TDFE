@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Image from 'react-bootstrap/Image';
-import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card, Modal } from 'react-bootstrap';
 
 import dashboard from '../../../assets/img/dashboard.jpg';
 import Navigation from './Navbar';
