@@ -1,14 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {useDispatch} from 'react-redux';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
-
 
 import './LoginForm.css';
 import { login } from '../../../../services/dwallet/login';
 import { setLoggedInUser } from '../../../../app/session';
-import { useState } from 'react';
 
 import {isEmpty} from '../../../../utils/utils';
 
@@ -39,11 +36,11 @@ const LoginForm = () => {
             "usuario" : username.current.value,
             "password" : password.current.value
         }
-        login (payload).then ((user) => {
-            dispatch (setLoggedInUser(user))
-            navigator ('/dashboard');
-            
-        })
+        login (payload)
+            .then ((user) => {
+                dispatch (setLoggedInUser(user))
+                navigator ('/dashboard'); 
+                })
     }
 
     return (
