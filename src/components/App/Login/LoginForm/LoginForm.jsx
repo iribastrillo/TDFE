@@ -9,6 +9,7 @@ import { setLoggedInUser } from '../../../../app/session';
 import { useState } from 'react';
 
 import {isEmpty} from '../../../../utils/utils';
+import { Link } from 'react-router-dom';
 
 
 const LoginForm = () => {
@@ -61,7 +62,7 @@ const LoginForm = () => {
             <Button variant="primary" type="submit" size='lg' disabled={forbidLogin}>
                 Ingresá
             </Button>
-            <p>Quiero registrarme</p>
+            <Link to='/signin'>Quiero registrarme</Link>
         </div>
     
         </Form>

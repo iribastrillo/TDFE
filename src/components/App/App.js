@@ -1,15 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useSelector } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import Dashboad from './Dashboard/Dashboard';
 import Login from './Login';
+import Transactions from './Transactions/Transactions';
+import SignIn from './SignIn';
 
 function App() {
-  const user = useSelector ((state) => state.session.value)
   return (
-    <div className="App">
-      {user === undefined ? <Login/> : <Dashboad/>}
+    <div className='App'>
+      <Routes>
+        <Route path='/' element={<Login/>}></Route>
+        <Route path='/signin' element={<SignIn/>}></Route>
+        <Route path='/dashboard' element={<Dashboad/>}></Route>
+        <Route path='/transactions' element={<Transactions/>}></Route>
+      </Routes>
     </div>
   );
 }

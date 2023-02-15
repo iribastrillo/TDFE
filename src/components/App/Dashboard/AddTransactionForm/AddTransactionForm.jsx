@@ -18,6 +18,7 @@ const AddTransactionForm = (show) => {
         .then(data => {
             setCategories(data.rubros);
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
 

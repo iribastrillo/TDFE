@@ -8,6 +8,7 @@ import {getAllDistricts} from '../../../../services/dwallet/getAllDistricts';
 import { getCitiesInDistrict } from '../../../../services/dwallet/getCitiesInDistrict';
 import { signin } from '../../../../services/dwallet/signin';
 import { setLoggedInUser } from '../../../../app/session';
+import { Link } from 'react-router-dom';
 
 
 const SignInForm = () => {
@@ -94,6 +95,9 @@ const SignInForm = () => {
             <Button variant="primary" type="submit">
                 Registrate
             </Button>
+            <div>
+                <Link to='/'>Quiero ingresar</Link>
+            </div>
         </Form>
     );
 }
