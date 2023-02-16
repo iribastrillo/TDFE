@@ -1,10 +1,10 @@
 import { Form, Modal } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react";
-import getCategories from "../../../../services/dwallet/getCategories";
+import getCategories from "../../../services/dwallet/getCategories";
 import { useSelector } from "react-redux";
-import { addTransaction } from "../../../../services/dwallet/postTransaction";
+import { addTransaction } from "../../../services/dwallet/postTransaction";
 
-const AddTransactionForm = (show) => {
+const TransactionForm = (show) => {
     const concept = useRef();
     const category = useRef();
     const amount = useRef();
@@ -42,7 +42,6 @@ const AddTransactionForm = (show) => {
 
         })
     }
-
 
     return(
         <Form onSubmit={handleSubmit}>
@@ -96,4 +95,4 @@ const AddTransactionForm = (show) => {
     )
 }
 
-export default AddTransactionForm;
+export default TransactionForm;

@@ -8,11 +8,14 @@ async function login (payload) {
         },
         body : JSON.stringify (payload)
     })
-    const data = await response.json();
     
+    const data = await response.json();
+
     if (response.status === 200) {
+        console.log (response);
         return Promise.resolve (data);
     } else {
+        console.log (response);
         return Promise.reject (data);
     }    
 }

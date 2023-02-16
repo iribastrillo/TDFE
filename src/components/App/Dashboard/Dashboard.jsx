@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Image from 'react-bootstrap/Image';
-import { Container, Row, Col, Card, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 
 import dashboard from '../../../assets/img/dashboard.jpg';
 import Navigation from './Navbar';
-import AddTransactionForm from './AddTransactionForm/AddTransactionForm';
+import TransactionModal from '../../TransactionModal/TransactionModal';
 
 const Dashboad = () => {
     const [show, setShow] = useState (false);
@@ -59,14 +59,7 @@ const Dashboad = () => {
                         </Card>
                     </Col>
                 </Row>
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Agregar un movimiento</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <AddTransactionForm/>
-                    </Modal.Body>
-                </Modal>
+                <TransactionModal show={show} onHide={handleClose}/>
             </Container>
         </Container>
     )
