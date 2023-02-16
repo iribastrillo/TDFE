@@ -9,7 +9,7 @@ const TransactionModal = ({show, handleClose}) => {
                 <Modal.Title>Agregar un movimiento</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <TransactionForm/>
+                <TransactionForm handleClose={handleClose}/>
             </Modal.Body>
         </Modal>
     )

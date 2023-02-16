@@ -1,10 +1,11 @@
-import { Form, Modal } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react";
 import getCategories from "../../../services/dwallet/getCategories";
 import { useSelector } from "react-redux";
 import { addTransaction } from "../../../services/dwallet/postTransaction";
+import './TransactionForm.css';
 
-const TransactionForm = (show) => {
+const TransactionForm = ({handleClose}) => {
     const concept = useRef();
     const category = useRef();
     const amount = useRef();
@@ -21,7 +22,6 @@ const TransactionForm = (show) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
-
     const handleSubmit = event => {
         event.preventDefault();
         const payload = {
@@ -35,11 +35,8 @@ const TransactionForm = (show) => {
         }
 
         addTransaction(payload).then(tr =>{
-            console.log(payload)
             if(tr.status !==200) 
-            console.log(tr);
-            
-
+                handleClose();
         })
     }
 
@@ -85,11 +82,9 @@ const TransactionForm = (show) => {
                 <Form.Text className="text-danger">
                 </Form.Text>
             </Form.Group>
-            <Modal.Footer>
-                <button className="button indigo" type="submit">
-                    Agregar
-                </button>
-            </Modal.Footer>
+            <button className="form-button button indigo" type="submit">
+                Agregar
+            </button>
         </Form>
 
     )

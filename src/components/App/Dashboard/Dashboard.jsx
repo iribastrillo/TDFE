@@ -59,7 +59,7 @@ const Dashboad = () => {
                         </Card>
                     </Col>
                 </Row>
-                <TransactionModal show={show} onHide={handleClose}/>
+                <TransactionModal show={show} handleClose={handleClose}/>
             </Container>
         </Container>
     )

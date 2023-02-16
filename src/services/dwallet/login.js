@@ -12,7 +12,6 @@ async function login (payload) {
     const data = await response.json();
 
     if (response.status === 200) {
-        console.log (response);
         return Promise.resolve (data);
     } else {
         console.log (response);
