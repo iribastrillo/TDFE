@@ -1,11 +1,23 @@
-import { Col, Row, Card } from "react-bootstrap"
+import { Col, Row, Card, Badge, Button } from "react-bootstrap"
 
-const Line = (props) => {
+const Line = ({transaction}) => {
+    const background = transaction.concepto.includes ('Gasto') ? 'danger' : 'success';
     return (
         <Row>
             <Col>
-                <Card border='light' className='light-pink'>
-                    <Card.Body>{props.transaction.concepto}{props.transaction.total}</Card.Body>
+                <Card className="mb-10" border='light'>
+                    <Card.Body>
+                        <div className="flex space-between middle">
+                            <div>
+                                {transaction.concepto}
+                                <Badge className="ml-10" bg={background}>{transaction.total}</Badge>
+                            </div>
+                            <div>
+                                <Button variant="danger">Eliminar</Button>
+                            </div>
+                            
+                        </div>
+                    </Card.Body>
                 </Card>
             </Col>
         </Row>

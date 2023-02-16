@@ -1,5 +1,5 @@
 import Image from 'react-bootstrap/Image';
-import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -7,7 +7,7 @@ import dashboard from '../../../assets/img/transactions.jpg';
 import Navigation from '../Dashboard/Navbar';
 import Line from './Line/Line';
 import getTransactions from '../../../services/dwallet/getTransactions';
-
+import TransactionModal from '../TransactionModal/TransactionModal';
 
 const Transactions = () => {
     const [transactions, setTransactions] = useState ([]);
@@ -44,32 +44,18 @@ const Transactions = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button onClick={handleShow} className='expand' variant='success'>+</Button>
-                    </Col>
-                    <Col>
-                        <Button className='expand' variant='danger'>-</Button>
+                        <button onClick={handleShow} className='button indigo'> 
+                            Agregar un movimiento
+                        </button>
                     </Col>
                 </Row>
                 <Row>
                     <Col><h2>Mis movimientos</h2></Col>
                 </Row>
-                {transactions.map ((transaction) => <Line transaction={transaction}/>)}
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Cancelar
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Agregar
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+
+                {transactions.map ((transaction) => <Line transaction={transaction} key={transaction.id}/>)}
+
+                <TransactionModal show={show} handleClose={handleClose}/>
   
             </Container>
         </Container>

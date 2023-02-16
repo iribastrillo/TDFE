@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 
-import TransactionForm from "./TransactionForm/TransactionForm";
+import TransactionForm from './TransactionForm/TransactionForm';
 
 const TransactionModal = ({show, handleClose}) => {
     return (

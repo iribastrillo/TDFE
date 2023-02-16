@@ -4,7 +4,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 
 import dashboard from '../../../assets/img/dashboard.jpg';
 import Navigation from './Navbar';
-import TransactionModal from '../../TransactionModal/TransactionModal';
+import TransactionModal from '../TransactionModal/TransactionModal';
 
 const Dashboad = () => {
     const [show, setShow] = useState (false);

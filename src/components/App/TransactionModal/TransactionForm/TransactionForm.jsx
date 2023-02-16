@@ -1,8 +1,8 @@
 import { Form } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react";
-import getCategories from "../../../services/dwallet/getCategories";
+import getCategories from '../../../../services/dwallet/getCategories';
 import { useSelector } from "react-redux";
-import { addTransaction } from "../../../services/dwallet/postTransaction";
+import { addTransaction } from "../../../../services/dwallet/postTransaction";
 import './TransactionForm.css';
 
 const TransactionForm = ({handleClose}) => {
