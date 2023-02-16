@@ -1,7 +1,6 @@
 import { Col, Row, Card, Badge, Button } from "react-bootstrap"
 
 const Line = ({transaction}) => {
-    const background = transaction.concepto.includes ('Gasto') ? 'danger' : 'success';
     return (
         <Row>
             <Col>
@@ -10,7 +9,7 @@ const Line = ({transaction}) => {
                         <div className="flex space-between middle">
                             <div>
                                 {transaction.concepto}
-                                <Badge className="ml-10" bg={background}>{transaction.total}</Badge>
+                                <Badge className="ml-10" bg='success'>{transaction.total}</Badge>
                             </div>
                             <div>
                                 <Button variant="danger">Eliminar</Button>

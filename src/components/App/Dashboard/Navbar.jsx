@@ -1,5 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap"
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
+
 
 import { logOut } from "../../../app/session";
 
@@ -19,8 +21,8 @@ const Navigation = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Mis movimientos</Nav.Link>
-                        <Nav.Link onClick={handleLogOut}>Salir</Nav.Link>
+                        <Link to='/transactions'><Nav.Link href="#home">Mis movimientos</Nav.Link></Link>
+                        <Link to='/'><Nav.Link onClick={handleLogOut}>Salir</Nav.Link></Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

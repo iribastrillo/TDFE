@@ -1,9 +1,10 @@
 import { Form } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react";
 import getCategories from '../../../../services/dwallet/getCategories';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTransaction } from "../../../../services/dwallet/postTransaction";
 import './TransactionForm.css';
+import { notifySuccess } from "../../../../app/toasts";
 
 const TransactionForm = ({handleClose}) => {
     const concept = useRef();
@@ -13,6 +14,7 @@ const TransactionForm = ({handleClose}) => {
     const date = useRef();
     const loggedInUser = useSelector(state => state.session.value);
     const[categories, setCategories] = useState([]);
+    const dispatch = useDispatch ();
 
     useEffect(() => {
         getCategories(loggedInUser)
@@ -37,6 +39,8 @@ const TransactionForm = ({handleClose}) => {
         addTransaction(payload).then(tr =>{
             if(tr.status !==200) 
                 handleClose();
+                dispatch(notifySuccess());
+
         })
     }
 
