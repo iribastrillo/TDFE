@@ -8,9 +8,15 @@ async function signin (payload) {
         },
         body : JSON.stringify (payload)
     })
-    const user = await response.json();
-    console.log (user);
-    return user;
+    
+    const data = await response.json();
+
+    if (response.status === 200) {
+        return Promise.resolve (data);
+    } else {
+        console.log (response);
+        return Promise.reject (data);
+    }    
 }
 
 export {signin};
