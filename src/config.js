@@ -6,7 +6,8 @@ const endpoints = {
     POST_LOGIN : '//login.php',
     GET_TRANSACTIONS : '//movimientos.php?idUsuario=',
     POST_TRANSACTION : '//movimientos.php',
-    GET_CATEGORIES: '//rubros.php'
+    GET_CATEGORIES: '//rubros.php',
+    DELETE_TRANSACTION: '//movimientos.php',
 }
 
 export default endpoints;

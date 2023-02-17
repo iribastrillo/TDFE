@@ -2,20 +2,22 @@ import { useEffect, useRef, useState } from 'react';
 import {useDispatch} from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './LoginForm.css';
 import { login } from '../../../../services/dwallet/login';
 import { setLoggedInUser } from '../../../../app/session';
 
 import {isEmpty} from '../../../../utils/utils';
-
+import getCategories from '../../../../services/dwallet/getCategories';
+import { setCategories } from '../../../../app/categories';
 
 const LoginForm = () => {
     const [forbidLogin, setForbidLogin] = useState (true)
     const [errorMessage, setErrorMessage] = useState ('');
     const username = useRef ('');
     const password = useRef ('');
-
+    const loginUser = useSelector((state) => state.session.value)
     const dispatch = useDispatch ();
     const navigator = useNavigate();
 
@@ -41,11 +43,20 @@ const LoginForm = () => {
             .then ((user) => {
                 dispatch (setLoggedInUser(user))
                 setErrorMessage('');
-                navigator ('/dashboard'); 
+
+                getCategories(user)
+                .then(data => {
+                    console.log(data);
+                    dispatch(setCategories(data.rubros))
                 })
+                navigator ('/dashboard'); 
+
+            })
             .catch ((rsp) => {
                 setErrorMessage(rsp.mensaje);
-            })
+            });
+        
+
     }
 
     return (

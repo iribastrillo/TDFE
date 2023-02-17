@@ -13,17 +13,19 @@ const TransactionForm = ({handleClose}) => {
     const payMethod = useRef();
     const date = useRef();
     const loggedInUser = useSelector(state => state.session.value);
-    const[categories, setCategories] = useState([]);
+    // const[categories, setCategories] = useState([]);
     const dispatch = useDispatch ();
 
-    useEffect(() => {
-        getCategories(loggedInUser)
-        .then(data => {
-            setCategories(data.rubros);
-        })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // useEffect(() => {
+    //     getCategories(loggedInUser)
+    //     .then(data => {
+    //         setCategories(data.rubros);
+    //     })
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
     
+    const categories = useSelector(state => state.categories.value)
+    console.log(categories);
     const handleSubmit = event => {
         event.preventDefault();
         const payload = {
