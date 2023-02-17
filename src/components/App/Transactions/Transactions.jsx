@@ -17,7 +17,7 @@ const Transactions = () => {
     const toast = useSelector ((state) => state.toast.value)
     const dispatch = useDispatch ();
 
-    const transactions = useSelector(state => state.transactions.value);
+    const transactions = useSelector(state => state.transactions.filteredTr);
     // useEffect (() => {
     //     getTransactions (loggedInUser).then ((data) => {
     //         setTransactions (data.movimientos);

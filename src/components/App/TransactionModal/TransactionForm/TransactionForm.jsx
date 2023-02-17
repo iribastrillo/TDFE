@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTransaction } from "../../../../services/dwallet/postTransaction";
 import './TransactionForm.css';
 import { notifySuccess } from "../../../../app/toasts";
+import { addNewTransaction } from "../../../../app/transactions";
+
 
 const TransactionForm = ({handleClose}) => {
     const concept = useRef();
@@ -41,6 +43,8 @@ const TransactionForm = ({handleClose}) => {
         addTransaction(payload).then(tr =>{
             if(tr.status !==200) 
                 handleClose();
+                console.log(payload)
+                dispatch(addNewTransaction(payload));
                 dispatch(notifySuccess());
 
         })
