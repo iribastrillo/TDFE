@@ -1,14 +1,14 @@
 import { Col, Row, Card, Badge, Button } from "react-bootstrap"
 import { useSelector, useDispatch } from "react-redux";
 import {deleteTransaction} from "../../../../services/dwallet/deleteTransaction";
-
+import {deleteTransactionById} from "../../../../app/transactions"
 
 const Line = ({transaction}) => {
 
     const categories = useSelector(state => state.categories.value)
     const user = useSelector(state => state.session.value);
     const cat = categories.filter(cat => cat.id === transaction.categoria)
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     // console.log(transaction)
 
@@ -20,7 +20,7 @@ const Line = ({transaction}) => {
 
         deleteTransaction(payload)
             .then(data => {
-                console.log(data);
+                dispatch(deleteTransactionById(data.idMovimiento))
             })
 
 

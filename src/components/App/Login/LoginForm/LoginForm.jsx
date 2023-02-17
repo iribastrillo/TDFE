@@ -11,6 +11,8 @@ import { setLoggedInUser } from '../../../../app/session';
 import {isEmpty} from '../../../../utils/utils';
 import getCategories from '../../../../services/dwallet/getCategories';
 import { setCategories } from '../../../../app/categories';
+import { setTransactions } from '../../../../app/transactions';
+import getTransactions from '../../../../services/dwallet/getTransactions';
 
 const LoginForm = () => {
     const [forbidLogin, setForbidLogin] = useState (true)
@@ -48,6 +50,11 @@ const LoginForm = () => {
                 .then(data => {
                     console.log(data);
                     dispatch(setCategories(data.rubros))
+                })
+
+                getTransactions(user)
+                .then(data => {
+                    dispatch(setTransactions(data.movimientos))
                 })
                 navigator ('/dashboard'); 
 

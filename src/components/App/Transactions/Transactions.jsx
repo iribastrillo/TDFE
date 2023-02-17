@@ -11,18 +11,19 @@ import TransactionModal from '../TransactionModal/TransactionModal';
 import { notifySuccess } from '../../../app/toasts';
 
 const Transactions = () => {
-    const [transactions, setTransactions] = useState ([]);
+    // const [transactions, setTransactions] = useState ([]);
     const [show, setShow] = useState (false);
     const loggedInUser = useSelector ((state) => state.session.value);
     const toast = useSelector ((state) => state.toast.value)
     const dispatch = useDispatch ();
 
-    useEffect (() => {
-        getTransactions (loggedInUser).then ((data) => {
-            setTransactions (data.movimientos);
-        })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const transactions = useSelector(state => state.transactions.value);
+    // useEffect (() => {
+    //     getTransactions (loggedInUser).then ((data) => {
+    //         setTransactions (data.movimientos);
+    //     })
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     function toastOff () {
         dispatch (notifySuccess(false));
