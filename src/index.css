@@ -55,6 +55,18 @@ h1, h2, h3, h4, h5 {
   background-color: #9ACEDB;
 }
 
+.green {
+  color: rgb(135, 217, 135);
+}
+
+.red {
+  color : rgb(225, 134, 134);
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .button {
   display: block;
   width: 100%;

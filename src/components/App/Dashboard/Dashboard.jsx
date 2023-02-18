@@ -10,6 +10,7 @@ import getTransactions from '../../../services/dwallet/getTransactions';
 import getCategories from '../../../services/dwallet/getCategories';
 import { setTransactions } from '../../../app/transactions';
 import { setCategories } from '../../../app/categories';
+import Total from './Total/Total';
 
 const Dashboad = () => {
     const [show, setShow] = useState (false);
@@ -55,6 +56,11 @@ const Dashboad = () => {
                         <button onClick={handleShow} className='button indigo'> 
                             Agregar un movimiento
                         </button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Total/>
                     </Col>
                 </Row>
                 <Row>

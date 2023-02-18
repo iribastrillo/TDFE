@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import {useDispatch} from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import './LoginForm.css';
 import { login } from '../../../../services/dwallet/login';
@@ -15,7 +14,6 @@ const LoginForm = () => {
     const [errorMessage, setErrorMessage] = useState ('');
     const username = useRef ('');
     const password = useRef ('');
-    const loginUser = useSelector((state) => state.session.value)
     const dispatch = useDispatch ();
     const navigator = useNavigate();
 
