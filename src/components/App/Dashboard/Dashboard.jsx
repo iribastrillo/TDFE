@@ -11,6 +11,7 @@ import getCategories from '../../../services/dwallet/getCategories';
 import { setTransactions } from '../../../app/transactions';
 import { setCategories } from '../../../app/categories';
 import Total from './Total/Total';
+import Charts from './Charts/Charts';
 
 const Dashboad = () => {
     const [show, setShow] = useState (false);
@@ -63,20 +64,7 @@ const Dashboad = () => {
                         <Total/>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <h2>Ingresos</h2>
-                        <Card border='light'>
-                            <Card.Body>Chart</Card.Body>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <h2>Gastos</h2>
-                        <Card border='light'>
-                            <Card.Body>Chart</Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+                <Charts/>
                 <Row>
                     <Col>
                         <h2>Comparativa con 2022</h2>
