@@ -6,7 +6,7 @@ import { addTransaction } from "../../../../services/dwallet/postTransaction";
 import './TransactionForm.css';
 import { notifySuccess } from "../../../../app/toasts";
 import { addNewTransaction } from "../../../../app/transactions";
-
+import { setCategories } from "../../../../app/categories";
 
 const TransactionForm = ({handleClose}) => {
     const concept = useRef();
@@ -18,14 +18,15 @@ const TransactionForm = ({handleClose}) => {
     // const[categories, setCategories] = useState([]);
     const dispatch = useDispatch ();
 
-    // useEffect(() => {
-    //     getCategories(loggedInUser)
-    //     .then(data => {
-    //         setCategories(data.rubros);
-    //     })
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
+    useEffect(() => {
+        getCategories(loggedInUser)
+        .then(data => {
+            dispatch(setCategories(data.rubros))
+        })
+    },[])
     
+    
+
     const categories = useSelector(state => state.categories.value)
     console.log(categories);
     const handleSubmit = event => {
