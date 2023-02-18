@@ -6,13 +6,9 @@ import { useSelector } from 'react-redux';
 
 import './LoginForm.css';
 import { login } from '../../../../services/dwallet/login';
-import { setLoggedInUser } from '../../../../app/session';
-
+import { setLoggedInUser } from '../../../../app/session'
 import {isEmpty} from '../../../../utils/utils';
-import getCategories from '../../../../services/dwallet/getCategories';
-import { setCategories } from '../../../../app/categories';
-import { setTransactions } from '../../../../app/transactions';
-import getTransactions from '../../../../services/dwallet/getTransactions';
+
 
 const LoginForm = () => {
     const [forbidLogin, setForbidLogin] = useState (true)
@@ -50,17 +46,6 @@ const LoginForm = () => {
             .catch ((rsp) => {
                 setErrorMessage(rsp.mensaje);
             })
-        getTransactions(loginUser)
-            .then(data => {
-                dispatch(setTransactions(data.movimientos))
-            })
-        getCategories(loginUser)
-            .then(data => {
-                dispatch(setCategories(data.rubros))
-        })
-        
-        
-
     }
 
     return (

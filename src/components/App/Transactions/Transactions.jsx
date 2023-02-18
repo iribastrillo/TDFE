@@ -1,20 +1,38 @@
 import Image from 'react-bootstrap/Image';
 import { Container, Row, Col, Toast } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import dashboard from '../../../assets/img/transactions.jpg';
 import Navigation from '../Dashboard/Navbar';
 import Line from './Line/Line';
 import TransactionModal from '../TransactionModal/TransactionModal';
 import { notifySuccess } from '../../../app/toasts';
 import FilterTransactions from './FilterTransactions/FilterTransactions';
+import getTransactions from '../../../services/dwallet/getTransactions';
+import getCategories from '../../../services/dwallet/getCategories';
+import { setTransactions } from '../../../app/transactions';
+import { setCategories } from '../../../app/categories';
 
 
 const Transactions = () => {
     const [show, setShow] = useState (false);
     const toast = useSelector ((state) => state.toast.value)
+    const loginUser = useSelector ((state) => state.session.value);
     const transactions = useSelector(state => state.transactions.filteredTr);
     const dispatch = useDispatch ();
+
+    useEffect (() => {
+        getTransactions(loginUser)
+            .then(data => {
+                dispatch(setTransactions(data.movimientos))
+            })
+        getCategories(loginUser)
+            .then(data => {
+                dispatch(setCategories(data.rubros))
+        })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     
 
     function toastOff () {
