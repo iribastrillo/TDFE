@@ -9,6 +9,7 @@ import Line from './Line/Line';
 import getTransactions from '../../../services/dwallet/getTransactions';
 import TransactionModal from '../TransactionModal/TransactionModal';
 import { notifySuccess } from '../../../app/toasts';
+import { setTransactions } from '../../../app/transactions';
 
 const Transactions = () => {
     // const [transactions, setTransactions] = useState ([]);
@@ -17,13 +18,15 @@ const Transactions = () => {
     const toast = useSelector ((state) => state.toast.value)
     const dispatch = useDispatch ();
 
+    useEffect (() => {
+        getTransactions(loggedInUser)
+        .then(data => {
+            dispatch(setTransactions(data.movimientos))
+        })
+    }, []);
+
+
     const transactions = useSelector(state => state.transactions.filteredTr);
-    // useEffect (() => {
-    //     getTransactions (loggedInUser).then ((data) => {
-    //         setTransactions (data.movimientos);
-    //     })
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
 
     function toastOff () {
         dispatch (notifySuccess(false));

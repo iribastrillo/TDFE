@@ -46,16 +46,16 @@ const LoginForm = () => {
                 dispatch (setLoggedInUser(user))
                 setErrorMessage('');
 
-                getCategories(user)
-                .then(data => {
-                    console.log(data);
-                    dispatch(setCategories(data.rubros))
-                })
+                // getCategories(user)
+                // .then(data => {
+                //     console.log(data);
+                //     dispatch(setCategories(data.rubros))
+                // })
 
-                getTransactions(user)
-                .then(data => {
-                    dispatch(setTransactions(data.movimientos))
-                })
+                // getTransactions(user)
+                // .then(data => {
+                //     dispatch(setTransactions(data.movimientos))
+                // })
                 navigator ('/dashboard'); 
 
             })
