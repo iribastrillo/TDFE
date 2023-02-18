@@ -2,14 +2,15 @@ import Image from 'react-bootstrap/Image';
 import { Container, Row, Col, Toast } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-
+import { setTransactions } from '../../../app/transactions';
 import dashboard from '../../../assets/img/transactions.jpg';
 import Navigation from '../Dashboard/Navbar';
 import Line from './Line/Line';
 import getTransactions from '../../../services/dwallet/getTransactions';
 import TransactionModal from '../TransactionModal/TransactionModal';
 import { notifySuccess } from '../../../app/toasts';
-import { setTransactions } from '../../../app/transactions';
+import getCategories from '../../../services/dwallet/getCategories';
+import { setCategories } from '../../../app/categories';
 
 const Transactions = () => {
     // const [transactions, setTransactions] = useState ([]);
@@ -18,15 +19,22 @@ const Transactions = () => {
     const toast = useSelector ((state) => state.toast.value)
     const dispatch = useDispatch ();
 
+    const transactions = useSelector(state => state.transactions.value);
     useEffect (() => {
-        getTransactions(loggedInUser)
-        .then(data => {
-            dispatch(setTransactions(data.movimientos))
+        getTransactions (loggedInUser).then ((data) => {
+            console.log(data);
+            dispatch(setTransactions (data.movimientos));
         })
     }, []);
 
+    useEffect(() => {
+        getCategories(loggedInUser)
+            .then(data => {
+                dispatch(setCategories(data.rubros))
+            })
+    }, [])
 
-    const transactions = useSelector(state => state.transactions.filteredTr);
+
 
     function toastOff () {
         dispatch (notifySuccess(false));

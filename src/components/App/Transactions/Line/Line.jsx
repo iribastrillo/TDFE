@@ -2,6 +2,9 @@ import { Col, Row, Card, Badge, Button } from "react-bootstrap"
 import { useSelector, useDispatch } from "react-redux";
 import {deleteTransaction} from "../../../../services/dwallet/deleteTransaction";
 import {deleteTransactionById} from "../../../../app/transactions"
+import getCategories from "../../../../services/dwallet/getCategories";
+import { setCategories } from "../../../../app/categories";
+import { useEffect } from "react";
 
 const Line = ({transaction}) => {
 
@@ -9,8 +12,19 @@ const Line = ({transaction}) => {
     const user = useSelector(state => state.session.value);
     const cat = categories.filter(cat => cat.id === transaction.categoria)
     const dispatch = useDispatch();
-
+    
     // console.log(transaction)
+
+    useEffect(() => {
+        getCategories(user)
+        .then(data => {
+            console.log(data);
+            dispatch(setCategories(data.rubros))
+        })
+    
+    }, [])    
+
+
 
     const handleClick = () => {
         const payload = {
