@@ -1,5 +1,5 @@
 import Image from 'react-bootstrap/Image';
-import { Container, Row, Col, Toast } from 'react-bootstrap';
+import { Container, Row, Col, Toast, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setTransactions } from '../../../app/transactions';
@@ -11,7 +11,7 @@ import TransactionModal from '../TransactionModal/TransactionModal';
 import { notifySuccess } from '../../../app/toasts';
 import getCategories from '../../../services/dwallet/getCategories';
 import { setCategories } from '../../../app/categories';
-
+import FilterTransactions from './FilterTransactions/FilterTransactions';
 const Transactions = () => {
     // const [transactions, setTransactions] = useState ([]);
     const [show, setShow] = useState (false);
@@ -19,22 +19,18 @@ const Transactions = () => {
     const toast = useSelector ((state) => state.toast.value)
     const dispatch = useDispatch ();
 
-    const transactions = useSelector(state => state.transactions.value);
+    const transactions = useSelector(state => state.transactions.filteredTr);
     useEffect (() => {
         getTransactions (loggedInUser).then ((data) => {
             console.log(data);
             dispatch(setTransactions (data.movimientos));
         })
-    }, []);
 
-    useEffect(() => {
         getCategories(loggedInUser)
-            .then(data => {
-                dispatch(setCategories(data.rubros))
-            })
-    }, [])
-
-
+        .then(data => {
+            dispatch(setCategories(data.rubros))
+        })
+    },[]);
 
     function toastOff () {
         dispatch (notifySuccess(false));
@@ -83,13 +79,17 @@ const Transactions = () => {
                             Agregar un movimiento
                         </button>
                     </Col>
+
+                </Row>
+                <Row>
+                    <Col>
+                        <FilterTransactions/>
+                    </Col>
                 </Row>
                 <Row>
                     <Col><h2>Mis movimientos</h2></Col>
                 </Row>
-
-                {transactions.map ((transaction) => <Line transaction={transaction} key={transaction.id}/>)}
-
+                    {transactions.map ((transaction) => <Line transaction={transaction} key={transaction.id}/>)}
                 <TransactionModal show={show} handleClose={handleClose}/>
   
             </Container>

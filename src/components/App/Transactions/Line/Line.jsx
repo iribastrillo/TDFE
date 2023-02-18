@@ -42,29 +42,32 @@ const Line = ({transaction}) => {
 
 
     return (
-        <Row>
-            <Col>
-                <Card className="mb-10" border='light'>
-                    <Card.Body>
-                        <div className="flex space-between middle">
-                            <div>
-                                {transaction.concepto}
-                                {cat[0].tipo}
-                                {cat[0].nombre}
-                                {cat[0].tipo}
-                                <img src={`https://dwallet.develotion.com/imgs/${cat[0].imagen}`} alt="" />
+        <>
+            <Row>
+                <Col>
+                    <Card className="mb-10" border='light'>
+                        <Card.Body>
+                            <div className="flex space-between middle">
+                                <div>
+                                    {transaction.concepto}
+                                    {cat[0].tipo}
+                                    {cat[0].nombre}
+                                    {cat[0].tipo}
+                                    <img src={`https://dwallet.develotion.com/imgs/${cat[0].imagen}`} alt="" />
+    
+                                    <Badge className="ml-10" bg='success'>{transaction.total}</Badge>
+                                </div>
+                                <div>
+                                    <Button variant="danger" onClick={handleClick}>Eliminar</Button>
+                                </div>
+                                
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </>
 
-                                <Badge className="ml-10" bg='success'>{transaction.total}</Badge>
-                            </div>
-                            <div>
-                                <Button variant="danger" onClick={handleClick}>Eliminar</Button>
-                            </div>
-                            
-                        </div>
-                    </Card.Body>
-                </Card>
-            </Col>
-        </Row>
     )
 }
 

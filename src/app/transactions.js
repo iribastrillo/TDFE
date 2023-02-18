@@ -21,8 +21,10 @@ const transactions = createSlice({
             state.filteredTr = transactionNewList
         },
 
-        setFilteredTransactions: (state,action) => {
+        setFilteredTransactions: (state, action) => {
+            console.log("entre al filtered")
             const {payload} = action;
+            console.log(payload)
             state.filteredTr = payload;
         },
 
@@ -36,5 +38,5 @@ const transactions = createSlice({
     }
 })
 
-export const {setTransactions, deleteTransactionById, addNewTransaction} = transactions.actions; 
+export const {setTransactions, deleteTransactionById, addNewTransaction, setFilteredTransactions} = transactions.actions; 
 export default transactions.reducer;
