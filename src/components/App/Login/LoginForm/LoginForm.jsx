@@ -45,23 +45,20 @@ const LoginForm = () => {
             .then ((user) => {
                 dispatch (setLoggedInUser(user))
                 setErrorMessage('');
-
-                // getCategories(user)
-                // .then(data => {
-                //     console.log(data);
-                //     dispatch(setCategories(data.rubros))
-                // })
-
-                // getTransactions(user)
-                // .then(data => {
-                //     dispatch(setTransactions(data.movimientos))
-                // })
                 navigator ('/dashboard'); 
-
             })
             .catch ((rsp) => {
                 setErrorMessage(rsp.mensaje);
-            });
+            })
+        getTransactions(loginUser)
+            .then(data => {
+                dispatch(setTransactions(data.movimientos))
+            })
+        getCategories(loginUser)
+            .then(data => {
+                dispatch(setCategories(data.rubros))
+        })
+        
         
 
     }

@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+
+
 const initialState = {
     value: [],
     filteredTr: [],
 }
 
-const transactions = createSlice({
+const transactionsSlice = createSlice({
     name: 'transactions',
     initialState,
     reducers:{
@@ -22,7 +24,6 @@ const transactions = createSlice({
         },
 
         setFilteredTransactions: (state, action) => {
-            console.log("entre al filtered")
             const {payload} = action;
             console.log(payload)
             state.filteredTr = payload;
@@ -30,7 +31,6 @@ const transactions = createSlice({
 
         addNewTransaction: (state,action) => {
             const {payload} = action;
-            console.log(payload);
             state.value = [...state.value,payload];
             state.filteredTr = [...state.filteredTr,payload];
         }
@@ -38,5 +38,5 @@ const transactions = createSlice({
     }
 })
 
-export const {setTransactions, deleteTransactionById, addNewTransaction, setFilteredTransactions} = transactions.actions; 
-export default transactions.reducer;
+export const {setTransactions, deleteTransactionById, addNewTransaction, setFilteredTransactions} = transactionsSlice.actions; 
+export default transactionsSlice.reducer;

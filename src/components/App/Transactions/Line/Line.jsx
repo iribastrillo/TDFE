@@ -18,10 +18,8 @@ const Line = ({transaction}) => {
     useEffect(() => {
         getCategories(user)
         .then(data => {
-            console.log(data);
             dispatch(setCategories(data.rubros))
         })
-    
     }, [])    
 
 
