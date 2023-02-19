@@ -17,7 +17,7 @@ const TransactionForm = ({handleClose}) => {
     const loggedInUser = useSelector(state => state.session.value);
     // const[categories, setCategories] = useState([]);
     const dispatch = useDispatch ();
-
+    const [btnDisabled, setBtnDisabled] = useState(true)
     useEffect(() => {
         getCategories(loggedInUser)
         .then(data => {
@@ -25,7 +25,19 @@ const TransactionForm = ({handleClose}) => {
         })
     },[])
     
-    
+    const validateForm = () => {
+        const _concept = concept.current.value
+        const _category = category.current.value
+        const _amount = amount.current.value
+        const _payMethod = payMethod.current.value
+        const _date = date.current.value
+
+        if(_concept !== '' && _category !== '' && _amount !== '' && _payMethod !== '' && _date !== ''){
+            setBtnDisabled(false)
+        } else {
+            setBtnDisabled(true)
+        }
+    }    
 
     const categories = useSelector(state => state.categories.value)
     console.log(categories);
@@ -55,14 +67,15 @@ const TransactionForm = ({handleClose}) => {
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-12">
                 <Form.Label>Concepto:</Form.Label>
-                <Form.Control type="text" placeholder="Concepto..." ref={concept}/>
+                <Form.Control type="text" placeholder="Concepto..." ref={concept} onChange={validateForm}/>
                 <Form.Text className="text-danger">
                 </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-12">
                 <Form.Label>Categoría:</Form.Label>
-                <Form.Select ref={category} defaultValue='Elige una categoría'>
+                <Form.Select ref={category} defaultValue="" onChange={validateForm}>
+                    <option value="" disabled>Seleccione una categoría...</option>
                     {categories.map((category) => {
                         return <option value={category.id} key={category.id}>{category.tipo} - {category.nombre}</option>
                     })}
@@ -71,14 +84,15 @@ const TransactionForm = ({handleClose}) => {
             
             <Form.Group className="mb-12">
                 <Form.Label>Importe:</Form.Label>
-                <Form.Control type="number" placeholder="Importe en $U..." ref={amount}/>
+                <Form.Control type="number" placeholder="Importe en $U..." ref={amount} onChange={validateForm}/>
                 <Form.Text className="text-danger">
                 </Form.Text>
             </Form.Group>
             
             <Form.Group className="mb-12">
                 <Form.Label>Medio de Pago: </Form.Label>
-                    <Form.Select ref={payMethod} defaultValue='Efectivo'>
+                    <Form.Select ref={payMethod} defaultValue="" onChange={validateForm}>
+                        <option value="" disabled>Seleccione un medio...</option>
                         <option value="Efectivo">Efectivo</option>
                         <option value="Credito">Crédito</option>
                         <option value="Debito">Débito</option>
@@ -89,11 +103,11 @@ const TransactionForm = ({handleClose}) => {
             
             <Form.Group className="mb-12">
                 <Form.Label>Fecha:</Form.Label>
-                <Form.Control type="date" placeholder="Concepto..." ref={date} />
+                <Form.Control type="date" placeholder="Concepto..." ref={date} onChange={validateForm}/>
                 <Form.Text className="text-danger">
                 </Form.Text>
             </Form.Group>
-            <button className="form-button button indigo" type="submit">
+            <button className="form-button button indigo" type="submit" disabled={btnDisabled}>
                 Agregar
             </button>
         </Form>
