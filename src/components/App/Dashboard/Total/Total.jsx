@@ -17,7 +17,7 @@ const Total = () => {
 
 
     return (
-        <Card>
+        <Card className="mb-10">
             <Card.Body>
                 <h2>Saldo final:</h2>
                 <p className={`${color} bold`}>

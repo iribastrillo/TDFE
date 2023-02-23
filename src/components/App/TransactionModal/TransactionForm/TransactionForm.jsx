@@ -23,6 +23,7 @@ const TransactionForm = ({handleClose}) => {
         .then(data => {
             dispatch(setCategories(data.rubros))
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     
     const validateForm = () => {

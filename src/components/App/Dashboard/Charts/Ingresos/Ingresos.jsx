@@ -9,7 +9,7 @@ const Ingresos = ({data,categories}) => {
     const points = [];
 
     labels.forEach(element => {
-        let eachTransaction = data.filter(d => d.categoria == element.id);
+        let eachTransaction = data.filter(d => d.categoria === element.id);
         if(eachTransaction.length !== 0) {
 
             const total = eachTransaction.reduce((a,b) => {
@@ -41,7 +41,7 @@ const Ingresos = ({data,categories}) => {
 
 
     return(
-        <Card border='light'>
+        <Card className="mb-10" border='light'>
             <Card.Body>
                 <h2>Ingresos</h2>
                 <Doughnut data={dataFrame}/>

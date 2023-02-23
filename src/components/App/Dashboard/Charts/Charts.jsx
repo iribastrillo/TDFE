@@ -1,6 +1,5 @@
-import { Doughnut } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Ingresos from "./Ingresos/Ingresos";
 import Gastos from "./Gastos/Gastos";
 const Charts = () => {

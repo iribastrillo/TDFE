@@ -54,7 +54,7 @@ const Dashboad = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <button onClick={handleShow} className='button indigo'> 
+                        <button onClick={handleShow} className='button indigo mb-10'> 
                             Agregar un movimiento
                         </button>
                     </Col>
