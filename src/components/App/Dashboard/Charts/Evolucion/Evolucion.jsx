@@ -10,6 +10,7 @@ import {
 import { Card } from 'react-bootstrap';
 import { Line } from 'react-chartjs-2';
 
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -100,4 +101,4 @@ const Evolucion = ({transactions}) => {
     )
 }
 
-  export default Evolucion;
+export default Evolucion;

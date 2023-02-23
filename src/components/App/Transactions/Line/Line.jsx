@@ -7,14 +7,11 @@ import { setCategories } from "../../../../app/categories";
 import { useEffect } from "react";
 
 const Line = ({transaction}) => {
-
     const categories = useSelector(state => state.categories.value)
     const user = useSelector(state => state.session.value);
     const cat = categories.filter(cat => cat.id === transaction.categoria)
     const dispatch = useDispatch();
     
-    // console.log(transaction)
-
     useEffect(() => {
         getCategories(user)
         .then(data => {
@@ -22,8 +19,6 @@ const Line = ({transaction}) => {
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])    
-
-
 
     const handleClick = () => {
         const payload = {
@@ -35,10 +30,7 @@ const Line = ({transaction}) => {
             .then(data => {
                 dispatch(deleteTransactionById(data.idMovimiento))
             })
-
-
     }
-
 
     return (
         <>

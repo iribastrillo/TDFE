@@ -13,6 +13,7 @@ import { setCategories } from '../../../app/categories';
 import Total from './Total/Total';
 import Charts from './Charts/Charts';
 
+
 const Dashboad = () => {
     const [show, setShow] = useState (false);
     const loginUser = useSelector ((state) => state.session.value);
