@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -8,9 +9,11 @@ import { logOut } from "../../../app/session";
 
 const Navigation = () => {
     const dispatch = useDispatch ();
+    const navigator = useNavigate ();
 
     function handleLogOut () {
         dispatch (logOut());
+        navigator ('/');
     }
 
 
