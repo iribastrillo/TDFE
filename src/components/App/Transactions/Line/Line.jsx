@@ -47,12 +47,9 @@ const Line = ({transaction}) => {
                         <Card.Body>
                             <div className="flex space-between middle">
                                 <div>
-                                    {transaction.concepto}
-                                    {cat[0].tipo}
-                                    {cat[0].nombre}
-                                    {cat[0].tipo}
                                     <img src={`https://dwallet.develotion.com/imgs/${cat[0].imagen}`} alt="" />
-    
+                                    <span>{transaction.concepto}</span>
+                                    <span> {cat[0].nombre}</span>
                                     <Badge className="ml-10" bg='success'>{transaction.total}</Badge>
                                 </div>
                                 <div>
