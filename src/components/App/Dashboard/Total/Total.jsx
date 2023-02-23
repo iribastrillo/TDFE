@@ -13,9 +13,6 @@ const Total = () => {
     }, 0)
     const color = total >= 0 ? 'green' : 'red';
 
-    console.log (total);
-
-
     return (
         <Card className="mb-10">
             <Card.Body>

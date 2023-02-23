@@ -41,7 +41,6 @@ const TransactionForm = ({handleClose}) => {
     }    
 
     const categories = useSelector(state => state.categories.value)
-    console.log(categories);
     const handleSubmit = event => {
         event.preventDefault();
         const payload = {
@@ -57,7 +56,6 @@ const TransactionForm = ({handleClose}) => {
         addTransaction(payload).then(tr =>{
             if(tr.status !==200) 
                 handleClose();
-                console.log(payload)
                 dispatch(addNewTransaction(payload));
                 dispatch(notifySuccess());
 
