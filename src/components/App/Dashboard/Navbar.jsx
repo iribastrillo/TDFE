@@ -18,9 +18,9 @@ const Navigation = () => {
 
 
     return (
-        <Navbar className="rounded indigo" expand="lg">
+        <Navbar className="indigo" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">Obligatorio</Navbar.Brand>
+                <Navbar.Brand className="brand" href="#home">Grow</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">

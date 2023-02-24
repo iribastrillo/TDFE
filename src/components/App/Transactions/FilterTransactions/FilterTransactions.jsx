@@ -23,7 +23,7 @@ const FilterTransactions = () => {
     }
     
     return(
-        <Form.Select aria-label="Default select example" onChange={handleSelectOption} ref={selectRef}>
+        <Form.Select className="mb-10" aria-label="Filtro" onChange={handleSelectOption} ref={selectRef}>
             <option value="all">Todos</option>
             <option value="ingreso">Ingresos</option>
             <option value="gasto">Gastos</option>

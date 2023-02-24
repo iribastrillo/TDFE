@@ -14,7 +14,7 @@ const Total = () => {
     const color = total >= 0 ? 'green' : 'red';
 
     return (
-        <Card className="mb-10">
+        <Card className="mb-10" border='light'>
             <Card.Body>
                 <h2>Saldo final:</h2>
                 <p className={`${color} bold`}>

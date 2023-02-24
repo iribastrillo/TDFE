@@ -47,8 +47,9 @@ const Transactions = () => {
     }
 
     return (
-        <Container fluid>
+        <Container>
             <Navigation></Navigation>
+            <Container fluid>
             <Container>
                 <Row className='mt-10'>
                     <Col>
@@ -96,6 +97,7 @@ const Transactions = () => {
                 <TransactionModal show={show} handleClose={handleClose}/>
   
             </Container>
+        </Container>
         </Container>
     )
 }

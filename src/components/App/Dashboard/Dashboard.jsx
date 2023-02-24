@@ -40,8 +40,9 @@ const Dashboad = () => {
     }
 
     return (
-        <Container fluid>
+        <Container>
             <Navigation></Navigation>
+            <Container fluid className='mt-10'>
             <Container>
                 <Row>
                     <Col>
@@ -68,6 +69,7 @@ const Dashboad = () => {
                 <Charts/>
                 <TransactionModal show={show} handleClose={handleClose}/>
             </Container>
+        </Container>
         </Container>
     )
 }
