@@ -12,6 +12,7 @@ import { setTransactions } from '../../../app/transactions';
 import { setCategories } from '../../../app/categories';
 import Total from './Total/Total';
 import Charts from './Charts/Charts';
+import Comparison from './Comparison/Comparison';
 
 
 const Dashboad = () => {
@@ -64,6 +65,11 @@ const Dashboad = () => {
                 <Row>
                     <Col>
                         <Total/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Comparison></Comparison>
                     </Col>
                 </Row>
                 <Charts/>
